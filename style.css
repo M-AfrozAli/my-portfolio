@@ -1,0 +1,183 @@
+/* Modern Minimalist CSS Reset & Variables */
+:root {
+    --bg-color: #faf9f6;       /* Soft Alabaster background */
+    --text-main: #1c1c1c;      /* Deep charcoal instead of pure black */
+    --text-muted: #707070;     /* Editorial muted gray */
+    --accent-soft: #e2e8f0;    /* Premium slate grey rule lines */
+    --card-bg: #ffffff;
+    --transition-smooth: all 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    background-color: var(--bg-color);
+    color: var(--text-main);
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+    letter-spacing: -0.01em;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+    padding: 40px 24px;
+    -webkit-font-smoothing: antialiased;
+}
+
+/* Centered Editorial Canvas */
+.wrapper {
+    width: 100%;
+    max-width: 580px;
+    opacity: 0;
+    transform: translateY(15px);
+    animation: fadeInPageLoad 0.8s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+}
+
+@keyframes fadeInPageLoad {
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+/* Header Layout */
+header {
+    margin-bottom: 56px;
+}
+
+.name-row {
+    display: flex;
+    justify-content: space-between;
+    align-items: baseline;
+}
+
+h1 {
+    font-size: 1.75rem;
+    font-weight: 600;
+    letter-spacing: -0.03em;
+    color: var(--text-main);
+}
+
+.tagline {
+    font-size: 0.9rem;
+    color: var(--text-muted);
+    font-weight: 400;
+    margin-top: 6px;
+}
+
+.bio {
+    font-size: 0.95rem;
+    line-height: 1.6;
+    color: var(--text-main);
+    margin-top: 24px;
+}
+
+.divider {
+    border: 0;
+    height: 1px;
+    background-color: var(--accent-soft);
+    margin: 40px 0;
+}
+
+/* Section Layout */
+section h2 {
+    font-size: 0.8rem;
+    text-transform: uppercase;
+    letter-spacing: 0.12em;
+    color: var(--text-muted);
+    font-weight: 600;
+    margin-bottom: 28px;
+}
+
+/* Aesthetic Row Cards */
+.list-container {
+    display: flex;
+    flex-direction: column;
+    gap: 24px;
+}
+
+.item-row {
+    padding-bottom: 4px;
+    transition: var(--transition-smooth);
+}
+
+.item-meta {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 8px;
+}
+
+.item-title {
+    font-size: 1.05rem;
+    font-weight: 500;
+    color: var(--text-main);
+}
+
+.status-pill {
+    font-size: 0.75rem;
+    letter-spacing: 0.02em;
+    color: var(--text-muted);
+    border-bottom: 1px dotted var(--text-muted);
+    padding-bottom: 1px;
+}
+
+.item-subtitle {
+    font-size: 0.85rem;
+    font-weight: 500;
+    color: var(--text-muted);
+    margin-bottom: 8px;
+}
+
+.item-desc {
+    font-size: 0.9rem;
+    line-height: 1.5;
+    color: var(--text-muted);
+}
+
+/* Minimal Interactive Footer */
+.interactive-zone {
+    margin-top: 56px;
+}
+
+.trigger-link {
+    font-size: 0.9rem;
+    color: var(--text-main);
+    background: none;
+    border: none;
+    border-bottom: 1px solid var(--text-main);
+    padding-bottom: 2px;
+    font-weight: 500;
+    cursor: pointer;
+    transition: var(--transition-smooth);
+}
+
+.trigger-link:hover {
+    color: var(--text-muted);
+    border-color: var(--accent-soft);
+}
+
+.panel {
+    max-height: 0;
+    overflow: hidden;
+    opacity: 0;
+    transition: max-height 0.5s cubic-bezier(0.16, 1, 0.3, 1), opacity 0.4s ease;
+    font-size: 0.88rem;
+    color: var(--text-muted);
+    line-height: 1.6;
+}
+
+.panel-content {
+    padding-top: 20px;
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
+}
+
+.panel-content span strong {
+    color: var(--text-main);
+    font-weight: 500;
+}
