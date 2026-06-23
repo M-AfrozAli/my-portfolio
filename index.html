@@ -3,66 +3,79 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>M. Afroz Ali — Portfolio</title>
+    <title>Muhammad Afroz Ali — Portfolio</title>
     <link rel="stylesheet" href="style.css">
 </head>
 <body>
 
-    <div class="wrapper">
-        
-        <header>
-            <div class="name-row">
-                <h1>Muhammad Afroz Ali</h1>
+    <nav class="nav-bar">
+        <div class="nav-container">
+            <a href="#about" class="nav-logo">MAA.</a>
+            <div class="nav-links">
+                <a href="#about" class="nav-item active">About</a>
+                <a href="#focus" class="nav-item">Credentials</a>
             </div>
-            <div class="tagline">Commerce × Informatics</div>
-            <p class="bio">
-                Building an educational foundation at the intersection of structural financial systems, corporate management frameworks, and dynamic software data tools.
+        </div>
+    </nav>
+
+    <main class="content-wrapper">
+        
+        <section id="about" class="scroll-section">
+            <header class="profile-header">
+                <div class="avatar-block">MA</div>
+                <div class="header-intro">
+                    <h1>Muhammad Afroz Ali</h1>
+                    <div class="tagline">Commerce × Informatics</div>
+                </div>
+            </header>
+            <p class="bio-text">
+                Building an educational foundation at the intersection of structural financial systems, corporate management frameworks, and dynamic software data tools. Focused on bridging analytical data processing with global financial architectures to drive future corporate innovation.
             </p>
-        </header>
+        </section>
 
-        <hr class="divider">
+        <div class="section-divider"></div>
 
-        <section>
-            <h2>Focus & Credentials</h2>
+        <section id="focus" class="scroll-section">
+            <h2 class="section-title">Focus & Credentials</h2>
             
-            <div class="list-container">
+            <div class="cards-grid">
                 
-                <div class="item-row">
-                    <div class="item-meta">
-                        <div class="item-title">ACCA Foundations in Accountancy</div>
-                        <div class="status-pill">Active Preparation</div>
+                <div class="premium-card">
+                    <div class="card-edge-accent"></div>
+                    <div class="card-body">
+                        <div class="card-meta">
+                            <span class="meta-label">Module FBT</span>
+                            <span class="status-badge preparing">Active Prep</span>
+                        </div>
+                        <h3 class="card-title">ACCA Foundations in Accountancy</h3>
+                        <p class="card-desc">
+                            Studying global commercial environments, regulatory parameters, and business ethics. Actively analyzing the strategic deployment of automated workflows and digital system evolution within modern accounting pipelines via the Study Hub framework.
+                        </p>
                     </div>
-                    <div class="item-subtitle">FBT — Business and Technology</div>
-                    <p class="item-desc">
-                        Studying commercial environments, global regulatory parameters, and the strategic deployment of automated technologies within modern accounting pipelines via the Study Hub framework.
-                    </p>
                 </div>
 
-                <div class="item-row">
-                    <div class="item-meta">
-                        <div class="item-title">IBM SkillsBuild Credential</div>
-                        <div class="status-pill">Verified Badge</div>
+                <div class="premium-card">
+                    <div class="card-edge-accent accent-alt"></div>
+                    <div class="card-body">
+                        <div class="card-meta">
+                            <span class="meta-label">Core Verification</span>
+                            <span class="status-badge verified">Verified Badge</span>
+                        </div>
+                        <h3 class="card-title">IBM SkillsBuild Credential</h3>
+                        <p class="card-desc">
+                            Validated practical execution frameworks for solving complex enterprise diagnostic challenges. Showcases verified foundational capabilities in cross-functional team communication, professional digital workflows, and technical problem-solving architectures.
+                        </p>
                     </div>
-                    <div class="item-subtitle">Workplace & Technical Foundations</div>
-                    <p class="item-desc">
-                        Validated practical execution methodologies for resolving corporate diagnostic challenges, cross-functional collaboration, and professional workflow optimization.
-                    </p>
                 </div>
 
             </div>
         </section>
 
-        <div class="interactive-zone">
-            <button class="trigger-link" id="toggleDetails">View Engagement Parameters</button>
-            <div class="panel" id="detailPanel">
-                <div class="panel-content">
-                    <span><strong>Inquiries:</strong> direct.contact@example.com</span>
-                    <span><strong>Status:</strong> Open to local sandbox projects & professional networking</span>
-                </div>
-            </div>
-        </div>
+    </main>
 
-    </div>
+    <footer class="minimal-footer">
+        <p>© 2026 M. Afroz Ali. All rights reserved.</p>
+    </footer>
 
     <script src="script.js"></script>
 </body>
