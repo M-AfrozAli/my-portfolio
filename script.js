@@ -1,19 +1,24 @@
 document.addEventListener('DOMContentLoaded', () => {
-    const toggleBtn = document.getElementById('toggleDetails');
-    const detailPanel = document.getElementById('detailPanel');
+    const sections = document.querySelectorAll('.scroll-section');
+    const navItems = document.querySelectorAll('.nav-item');
 
-    toggleBtn.addEventListener('click', () => {
-        const isOpened = detailPanel.style.maxHeight && detailPanel.style.maxHeight !== '0px';
+    // Highlighting current nav item based on user scrolling position
+    window.addEventListener('scroll', () => {
+        let currentSectionId = '';
         
-        if (isOpened) {
-            detailPanel.style.maxHeight = '0px';
-            detailPanel.style.opacity = '0';
-            toggleBtn.textContent = 'View Engagement Parameters';
-        } else {
-            // Uses scrollHeight to dynamically calculate panel height for smooth transitions
-            detailPanel.style.maxHeight = detailPanel.scrollHeight + 'px';
-            detailPanel.style.opacity = '1';
-            toggleBtn.textContent = 'Hide Engagement Parameters';
-        }
+        sections.forEach(section => {
+            const sectionTop = section.offsetTop;
+            // Checks if user has scrolled past section threshold
+            if (window.scrollY >= (sectionTop - 140)) {
+                currentSectionId = section.getAttribute('id');
+            }
+        });
+
+        navItems.forEach(item => {
+            item.classList.remove('active');
+            if (item.getAttribute('href') === `#${currentSectionId}`) {
+                item.classList.add('active');
+            }
+        });
     });
 });
