@@ -26,7 +26,7 @@ document.addEventListener('DOMContentLoaded', () => {
     if (ibmCard) {
         ibmCard.addEventListener('click', (e) => {
             // Keep link interactions native on the back side of the card layout
-            if (e.target.tagName.toLowerCase() === 'a') return;
+            if (e.target.tagName.toLowerCase() === 'a' || e.target.tagName.toLowerCase() === 'iframe') return;
             
             ibmCard.classList.toggle('is-flipped');
         });
