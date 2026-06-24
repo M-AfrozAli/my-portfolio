@@ -1,14 +1,14 @@
 document.addEventListener('DOMContentLoaded', () => {
     const sections = document.querySelectorAll('.scroll-section');
     const navItems = document.querySelectorAll('.nav-item');
+    const ibmCard = document.getElementById('ibmCard');
 
-    // Highlighting current nav item based on user scrolling position
+    // 1. Highlight navigation link matching scroll viewport position
     window.addEventListener('scroll', () => {
         let currentSectionId = '';
         
         sections.forEach(section => {
             const sectionTop = section.offsetTop;
-            // Checks if user has scrolled past section threshold
             if (window.scrollY >= (sectionTop - 140)) {
                 currentSectionId = section.getAttribute('id');
             }
@@ -21,4 +21,14 @@ document.addEventListener('DOMContentLoaded', () => {
             }
         });
     });
+
+    // 2. Control the 3D flipping animation trigger logic for the IBM card container
+    if (ibmCard) {
+        ibmCard.addEventListener('click', (e) => {
+            // Keep link interactions native on the back side of the card layout
+            if (e.target.tagName.toLowerCase() === 'a') return;
+            
+            ibmCard.classList.toggle('is-flipped');
+        });
+    }
 });
