@@ -248,21 +248,25 @@ h1 {
     color: var(--text-muted);
 }
 
-/* Responsive 3D Card Engine Adjustments */
+/* ==========================================================================
+   RE-ENGINEERED FLIP CARD SYSTEMS (Prevents Blank Iframe Bugs)
+   ========================================================================== */
 .flip-card {
     background: transparent !important;
     border: none !important;
     box-shadow: none !important;
-    perspective: 1000px;
+    perspective: 1200px;
     cursor: pointer;
+    min-height: 380px; /* Explicit structural minimum height */
 }
 
 .card-flipper {
     position: relative;
     width: 100%;
     height: 100%;
+    min-height: 380px;
     transform-style: preserve-3d;
-    transition: transform 0.7s cubic-bezier(0.16, 1, 0.3, 1);
+    transition: transform 0.6s cubic-bezier(0.16, 1, 0.3, 1);
 }
 
 .flip-card.is-flipped .card-flipper {
@@ -271,6 +275,8 @@ h1 {
 
 .card-face {
     position: absolute;
+    top: 0;
+    left: 0;
     width: 100%;
     height: 100%;
     backface-visibility: hidden;
@@ -278,12 +284,13 @@ h1 {
     border-radius: 18px;
     border: 1px solid var(--border-soft);
     background: var(--card-surface);
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.01);
 }
 
 .card-front {
     display: flex;
-    position: relative;
     z-index: 2;
+    transform: rotateY(0deg);
 }
 
 .card-back {
@@ -293,9 +300,7 @@ h1 {
     justify-content: center;
     align-items: center;
     padding: 24px;
-    min-height: 340px; 
-    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.01);
-    transform-style: preserve-3d; /* Enforces element stack sorting during 3D z-axis translation */
+    z-index: 1;
 }
 
 .embed-container {
@@ -303,7 +308,14 @@ h1 {
     justify-content: center;
     align-items: center;
     width: 100%;
-    transform: translateZ(20px);
+    height: 270px; /* Force an explicit height box layout */
+    overflow: visible;
+}
+
+.embed-container iframe {
+    display: block;
+    width: 160px;
+    height: 270px;
 }
 
 .flip-hint {
@@ -318,6 +330,8 @@ h1 {
 
 .flip-hint.back-hint {
     margin-top: 12px;
+    position: absolute;
+    bottom: 20px;
 }
 
 /* ==========================================================================
@@ -377,5 +391,8 @@ h1 {
     }
     .card-desc {
         font-size: 0.88rem;
+    }
+    .flip-card, .card-flipper {
+        min-height: 440px; /* Gives extra space for long text on small phones */
     }
 }
