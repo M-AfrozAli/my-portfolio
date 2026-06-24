@@ -25,8 +25,8 @@ document.addEventListener('DOMContentLoaded', () => {
     // 2. Control the 3D flipping animation trigger logic for the IBM card container
     if (ibmCard) {
         ibmCard.addEventListener('click', (e) => {
-            // Keep link interactions native on the back side of the card layout
-            if (e.target.tagName.toLowerCase() === 'a' || e.target.tagName.toLowerCase() === 'iframe') return;
+            
+            if (e.target.tagName.toLowerCase() === 'iframe') return;
             
             ibmCard.classList.toggle('is-flipped');
         });
