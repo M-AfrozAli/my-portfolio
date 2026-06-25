@@ -14,6 +14,7 @@
             <div class="nav-links">
                 <a href="#about" class="nav-item active">About</a>
                 <a href="#focus" class="nav-item">Credentials</a>
+                <a href="#projects" class="nav-item">Projects</a>
             </div>
         </div>
     </nav>
@@ -37,7 +38,6 @@
 
         <section id="focus" class="scroll-section">
             <h2 class="section-title">Focus & Credentials</h2>
-            
             <div class="cards-grid">
                 
                 <div class="premium-card">
@@ -56,7 +56,6 @@
 
                 <div class="premium-card flip-card" id="ibmCard">
                     <div class="card-flipper">
-                        
                         <div class="card-face card-front">
                             <div class="card-edge-accent accent-alt"></div>
                             <div class="card-body">
@@ -71,14 +70,73 @@
                                 <span class="flip-hint">Click card to view credential verification</span>
                             </div>
                         </div>
-
                         <div class="card-face card-back">
                             <div class="embed-container">
                                 <iframe src="https://www.credly.com/embedded_badge/8885bbb2-dc7c-4ab9-ae80-7a4115c51c68" width="160" height="270" frameborder="0" scrolling="no" allowtransparency="true"></iframe>
                             </div>
                             <span class="flip-hint back-hint">Click to return</span>
                         </div>
+                    </div>
+                </div>
 
+            </div>
+        </section>
+
+        <div class="section-divider"></div>
+
+        <section id="projects" class="scroll-section">
+            <h2 class="section-title">Selected Projects</h2>
+            
+            <div class="expandable-project-container" id="lancProjectCard">
+                
+                <div class="project-collapsed-view">
+                    <div class="card-edge-accent accent-project"></div>
+                    <div class="card-body">
+                        <div class="card-meta">
+                            <span class="meta-label">Application Development</span>
+                            <span class="status-badge live-tag">Interactive Preview</span>
+                        </div>
+                        <h3 class="card-title">Lanc</h3>
+                        <p class="card-desc">An intelligent application platform driven by artificial intelligence. Built using a modern frontend architecture to recognize audio streams and return automated contextual metadata matching.</p>
+                        <span class="action-toggle-hint">Click to expand overview & media assets</span>
+                    </div>
+                </div>
+
+                <div class="project-expanded-view">
+                    <div class="expanded-header">
+                        <h2>Lanc.</h2>
+                        <button class="close-project-btn" id="closeLancBtn">Collapse</button>
+                    </div>
+                    
+                    <p class="project-detailed-bio">
+                        Lanc is an aesthetic, AI-driven music recognizer engineered to provide smooth audio search tracking across multiple platforms. By bridging interactive client-side design layouts with powerful web processing APIs, the platform translates real-world auditory waveforms into structured information sets instantly.
+                    </p>
+                    
+                    <ul class="project-tech-bullets">
+                        <li><strong>Core Engine:</strong> Leverages the AudD music recognition database API for high-precision cloud-based audio footprint fingerprinting and matching.</li>
+                        <li><strong>Conversational AI layer:</strong> Integrates ElevenLabs API infrastructure to enable clean, smart chatbot conversational interfaces and fluid text-to-speech interaction loops.</li>
+                        <li><strong>Stack Architecture:</strong> Engineered entirely natively utilizing vanilla HTML5 frameworks, custom structural CSS layout styling rules, and dynamic object-oriented asynchronous JavaScript logic.</li>
+                    </ul>
+
+                    <div class="carousel-wrapper">
+                        <div class="carousel-track-container">
+                            <div class="carousel-slide active"><img src="1.png" alt="Lanc App Interface View"></div>
+                            <div class="carousel-slide"><img src="7.png" alt="Technical Insights Architecture"></div>
+                            <div class="carousel-slide"><img src="8.png" alt="Cross Platform Availability Layout"></div>
+                            <div class="carousel-slide"><img src="10.png" alt="Live Playback Spotify Embed Structure"></div>
+                            <div class="carousel-slide"><img src="11.png" alt="Lanc Bot Interactive View"></div>
+                        </div>
+                        
+                        <button class="carousel-arrow arrow-left" id="prevSlide">←</button>
+                        <button class="carousel-arrow arrow-right" id="nextSlide">→</button>
+                        
+                        <div class="carousel-dots-container">
+                            <span class="carousel-dot active-dot"></span>
+                            <span class="carousel-dot"></span>
+                            <span class="carousel-dot"></span>
+                            <span class="carousel-dot"></span>
+                            <span class="carousel-dot"></span>
+                        </div>
                     </div>
                 </div>
 
