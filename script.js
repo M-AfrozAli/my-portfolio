@@ -10,7 +10,6 @@ document.addEventListener('DOMContentLoaded', () => {
     const nextBtn = document.getElementById('nextSlide');
     let currentSlideIndex = 0;
 
-    // Scroll spy for navigation links
     window.addEventListener('scroll', () => {
         let currentSectionId = '';
         sections.forEach(section => {
@@ -27,7 +26,6 @@ document.addEventListener('DOMContentLoaded', () => {
         });
     }, { passive: true });
 
-    // Flip card functionality
     if (ibmCard) {
         ibmCard.addEventListener('click', (e) => {
             if (e.target.tagName.toLowerCase() === 'iframe') return;
@@ -35,7 +33,6 @@ document.addEventListener('DOMContentLoaded', () => {
         });
     }
 
-    // Expand project card
     if (lancProjectCard) {
         lancProjectCard.addEventListener('click', () => {
             if (!lancProjectCard.classList.contains('is-expanded')) {
@@ -44,7 +41,6 @@ document.addEventListener('DOMContentLoaded', () => {
         });
     }
 
-    // Collapse project card
     if (closeLancBtn) {
         closeLancBtn.addEventListener('click', (e) => {
             e.stopPropagation(); 
@@ -52,7 +48,6 @@ document.addEventListener('DOMContentLoaded', () => {
         });
     }
 
-    // Image carousel functionality
     function updateCarouselState() {
         slides.forEach(slide => slide.classList.remove('active'));
         dots.forEach(dot => dot.classList.remove('active-dot'));
