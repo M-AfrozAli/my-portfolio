@@ -121,13 +121,15 @@
   // ---------- Project expander ----------
   const lanc = document.getElementById("lancCard");
   const closeBtn = document.getElementById("closeLancBtn");
-  lanc.addEventListener("click", function () {
-    if (!lanc.classList.contains("open")) lanc.classList.add("open");
-  });
-  closeBtn.addEventListener("click", function (e) {
-    e.stopPropagation();
-    lanc.classList.remove("open");
-  });
+  if (lanc && closeBtn) {
+    lanc.addEventListener("click", function () {
+      if (!lanc.classList.contains("open")) lanc.classList.add("open");
+    });
+    closeBtn.addEventListener("click", function (e) {
+      e.stopPropagation();
+      lanc.classList.remove("open");
+    });
+  }
 
   // ---------- Carousel placeholder ----------
   let slide = 0;
@@ -135,8 +137,12 @@
   const label = document.getElementById("slideLabel");
   function setSlide(i) {
     slide = (i + total) % total;
-    label.textContent = "Media preview · slide " + (slide + 1) + " / " + total;
+    if (label) label.textContent = "Media preview · slide " + (slide + 1) + " / " + total;
   }
-  document.getElementById("prevSlide").addEventListener("click", function (e) { e.stopPropagation(); setSlide(slide - 1); });
-  document.getElementById("nextSlide").addEventListener("click", function (e) { e.stopPropagation(); setSlide(slide + 1); });
+  const prevBtn = document.getElementById("prevSlide");
+  const nextBtn = document.getElementById("nextSlide");
+  if (prevBtn && nextBtn) {
+    prevBtn.addEventListener("click", function (e) { e.stopPropagation(); setSlide(slide - 1); });
+    nextBtn.addEventListener("click", function (e) { e.stopPropagation(); setSlide(slide + 1); });
+  }
 })();
