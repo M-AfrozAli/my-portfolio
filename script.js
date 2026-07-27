@@ -1,179 +1,141 @@
-(function () {
-  // ---------- Lanyard physics ----------
-  const stage = document.getElementById("lanyardStage");
-  const card = document.getElementById("lanyardCard");
-  const rope = document.getElementById("ropePath");
+document.addEventListener('DOMContentLoaded', () => {
 
-  if (!stage || !card || !rope) return;
+const sections = document.querySelectorAll('.scroll-section');
 
-  const state = {
-    pivot: { x: 0, y: 22 },
-    pos: { x: 0, y: 200 },
-    prev: { x: 0, y: 200 },
-    ropeLen: 200,
-    cardW: 232,
-    cardH: 300,
-    dragging: false,
-    grabOffset: { x: 0, y: 0 },
-    downClient: { x: 0, y: 0 },
-    moved: false,
-    initialized: false,
-  };
+const navItems = document.querySelectorAll('.nav-item');
 
-  function resize() {
-    const rect = stage.getBoundingClientRect();
-    if (rect.width === 0 || rect.height === 0) return;
+const ibmCard = document.getElementById('ibmCard');
 
-    const w = rect.width;
-    let cw = 232, ch = 300;
-    if (w < 420) { cw = 186; ch = 246; }
-    else if (w < 640) { cw = 200; ch = 260; }
-    
-    state.cardW = cw;
-    state.cardH = ch;
-    state.pivot.x = rect.width / 2;
-    state.pivot.y = 22;
-    state.ropeLen = Math.min(rect.height - ch - 40, w < 480 ? 150 : 190);
+const lancProjectCard = document.getElementById('lancProjectCard');
 
-    if (!state.initialized) {
-      state.pos.x = state.pivot.x;
-      state.pos.y = state.pivot.y + state.ropeLen;
-      state.prev.x = state.pos.x;
-      state.prev.y = state.pos.y;
-      state.initialized = true;
-    }
-  }
+const closeLancBtn = document.getElementById('closeLancBtn');
 
-  // Run initial calculation once DOM is ready
-  resize();
+const slides = document.querySelectorAll('.carousel-slide');
 
-  // Debounced resize to avoid physics engine conflicts
-  let resizeTimeout;
-  window.addEventListener("resize", () => {
-    clearTimeout(resizeTimeout);
-    resizeTimeout = setTimeout(resize, 100);
-  });
+const dots = document.querySelectorAll('.carousel-dot');
 
-  function onMove(e) {
-    if (!state.dragging) return;
-    e.preventDefault();
-    const rect = stage.getBoundingClientRect();
-    const px = e.clientX - rect.left;
-    const py = e.clientY - rect.top;
-    state.pos.x = px - state.grabOffset.x;
-    state.pos.y = py - state.grabOffset.y;
+const prevBtn = document.getElementById('prevSlide');
 
-    if (Math.hypot(e.clientX - state.downClient.x, e.clientY - state.downClient.y) > 5) {
-      state.moved = true;
-    }
-  }
+const nextBtn = document.getElementById('nextSlide');
 
-  function onUp() {
-    if (!state.dragging) return;
-    state.dragging = false;
-    if (!state.moved) card.classList.toggle("is-flipped");
-  }
+let currentSlideIndex = 0;
 
-  window.addEventListener("pointermove", onMove, { passive: false });
-  window.addEventListener("pointerup", onUp);
-  window.addEventListener("pointercancel", onUp);
+window.addEventListener('scroll', () => {
 
-  card.addEventListener("pointerdown", function (e) {
-    const rect = stage.getBoundingClientRect();
-    const px = e.clientX - rect.left;
-    const py = e.clientY - rect.top;
-    state.dragging = true;
-    state.moved = false;
-    state.downClient = { x: e.clientX, y: e.clientY };
-    state.grabOffset = { x: px - state.pos.x, y: py - state.pos.y };
+let currentSectionId = '';
 
-    try {
-      if (card.setPointerCapture) card.setPointerCapture(e.pointerId);
-    } catch (err) {
-      // Fallback if pointer capture is blocked by browser security
-    }
-  });
+sections.forEach(section => {
 
-  function tick() {
-    const s = state;
-    if (!s.initialized) {
-      requestAnimationFrame(tick);
-      return;
-    }
+const sectionTop = section.offsetTop;
 
-    if (!s.dragging) {
-      const vx = (s.pos.x - s.prev.x) * 0.98;
-      const vy = (s.pos.y - s.prev.y) * 0.98;
-      s.prev.x = s.pos.x;
-      s.prev.y = s.pos.y;
-      s.pos.x += vx;
-      s.pos.y += vy + 0.5; // gravity
-    } else {
-      s.prev.x = s.pos.x;
-      s.prev.y = s.pos.y;
-    }
+if (window.scrollY >= (sectionTop - 140)) {
 
-    const dx = s.pos.x - s.pivot.x;
-    const dy = s.pos.y - s.pivot.y;
-    const dist = Math.hypot(dx, dy) || 0.0001;
+currentSectionId = section.getAttribute('id');
 
-    if (dist > s.ropeLen) {
-      const k = s.ropeLen / dist;
-      s.pos.x = s.pivot.x + dx * k;
-      s.pos.y = s.pivot.y + dy * k;
-    }
+}
 
-    const angleDeg = Math.atan2(s.pos.x - s.pivot.x, s.pos.y - s.pivot.y) * (180 / Math.PI);
-    card.style.transform =
-      "translate3d(" + (s.pos.x - s.cardW / 2) + "px, " + s.pos.y + "px, 0px) rotate(" + (-angleDeg) + "deg)";
+});
 
-    const sag = Math.min(30, (s.ropeLen - Math.hypot(dx, dy)) * -0.15 + 10);
-    const mx = (s.pivot.x + s.pos.x) / 2;
-    const my = (s.pivot.y + s.pos.y) / 2 + sag;
-    rope.setAttribute("d", "M " + s.pivot.x + " " + s.pivot.y + " Q " + mx + " " + my + " " + s.pos.x + " " + s.pos.y);
+navItems.forEach(item => {
 
-    requestAnimationFrame(tick);
-  }
-  requestAnimationFrame(tick);
+item.classList.remove('active');
 
-  // ---------- Nav scroll spy ----------
-  const sections = document.querySelectorAll(".section, .about-section");
-  const navItems = document.querySelectorAll(".nav-item");
-  window.addEventListener("scroll", function () {
-    let current = "";
-    sections.forEach(function (sec) {
-      if (window.scrollY >= sec.offsetTop - 160) current = sec.id;
-    });
-    navItems.forEach(function (item) {
-      item.classList.toggle("active", item.getAttribute("href") === "#" + current);
-    });
-  }, { passive: true });
+if (item.getAttribute('href') === #${currentSectionId}) {
 
-  // ---------- Project expander ----------
-  const lanc = document.getElementById("lancCard");
-  const closeBtn = document.getElementById("closeLancBtn");
-  if (lanc && closeBtn) {
-    lanc.addEventListener("click", function () {
-      if (!lanc.classList.contains("open")) lanc.classList.add("open");
-    });
-    closeBtn.addEventListener("click", function (e) {
-      e.stopPropagation();
-      lanc.classList.remove("open");
-    });
-  }
+item.classList.add('active');
 
-  // ---------- Carousel placeholder ----------
-  let slide = 0;
-  const total = 5;
-  const label = document.getElementById("slideLabel");
-  function setSlide(i) {
-    slide = (i + total) % total;
-    if (label) label.textContent = "Media preview · slide " + (slide + 1) + " / " + total;
-  }
-  const prevBtn = document.getElementById("prevSlide");
-  const nextBtn = document.getElementById("nextSlide");
-  if (prevBtn && nextBtn) {
-    prevBtn.addEventListener("click", function (e) { e.stopPropagation(); setSlide(slide - 1); });
-    nextBtn.addEventListener("click", function (e) { e.stopPropagation(); setSlide(slide + 1); });
-  }
-})();
+}
+
+});
+
+});
+
+if (ibmCard) {
+
+ibmCard.addEventListener('click', (e) => {
+
+if (e.target.tagName.toLowerCase() === 'iframe') return;
+
+ibmCard.classList.toggle('is-flipped');
+
+});
+
+}
+
+if (lancProjectCard) {
+
+lancProjectCard.addEventListener('click', (e) => {
+
+if (!lancProjectCard.classList.contains('is-expanded')) {
+
+lancProjectCard.classList.add('is-expanded');
+
+}
+
+});
+
+}
+
+if (closeLancBtn) {
+
+closeLancBtn.addEventListener('click', (e) => {
+
+e.stopPropagation();
+
+lancProjectCard.classList.remove('is-expanded');
+
+});
+
+}
+
+function updateCarouselState() {
+
+slides.forEach(slide => slide.classList.remove('active'));
+
+dots.forEach(dot => dot.classList.remove('active-dot'));
+
+slides[currentSlideIndex].classList.add('active');
+
+dots[currentSlideIndex].classList.add('active-dot');
+
+}
+
+if (nextBtn && prevBtn) {
+
+nextBtn.addEventListener('click', (e) => {
+
+e.stopPropagation();
+
+currentSlideIndex = (currentSlideIndex + 1) % slides.length;
+
+updateCarouselState();
+
+});
+
+prevBtn.addEventListener('click', (e) => {
+
+e.stopPropagation();
+
+currentSlideIndex = (currentSlideIndex - 1 + slides.length) % slides.length;
+
+updateCarouselState();
+
+});
+
+dots.forEach((dot, index) => {
+
+dot.addEventListener('click', (e) => {
+
+e.stopPropagation();
+
+currentSlideIndex = index;
+
+updateCarouselState();
+
+});
+
+});
+
+}
+
+});
