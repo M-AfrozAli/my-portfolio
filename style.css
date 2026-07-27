@@ -80,10 +80,17 @@ body {
   pointer-events: none; z-index: 1;
 }
 .lanyard-card {
-  position: absolute; top: 0; left: 0;
-  width: 232px; height: 300px;
-  transform-origin: 50% 0; cursor: grab; z-index: 2;
-  will-change: transform; perspective: 1200px;
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 232px;
+  height: 300px;
+  transform-origin: 50% 0;
+  cursor: grab;
+  z-index: 2;
+  will-change: transform;
+  perspective: 1200px;
+}
 }
 .lanyard-card:active { cursor: grabbing; }
 .card-inner {
