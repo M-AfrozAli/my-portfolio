@@ -2,7 +2,7 @@
     --bg-base: #faf9f5;        
     --text-primary: #111518;   
     --text-muted: #58626d;     
-    --glass-bg: rgba(250, 249, 245, 0.8);
+    --glass-bg: rgba(250, 249, 245, 0.85);
     --border-soft: rgba(17, 21, 24, 0.06);
     --card-surface: #ffffff;
     
@@ -10,7 +10,7 @@
     --accent-secondary: #7c3aed; 
     --accent-project: #db2777;   
     
-    --transition-premium: all 0.5s cubic-bezier(0.16, 1, 0.3, 1);
+    --transition-premium: all 0.4s cubic-bezier(0.16, 1, 0.3, 1);
 }
 
 html {
@@ -33,7 +33,7 @@ body {
     padding-top: 100px; 
 }
 
-/* Nav */
+/* Nav Bar */
 .nav-bar {
     position: fixed;
     top: 20px;
@@ -96,29 +96,64 @@ body {
     padding: 24px 0;
 }
 
+/* Landing / Hero Enhancements */
+.hero-status-bar {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    background: #ffffff;
+    border: 1px solid var(--border-soft);
+    padding: 6px 14px;
+    border-radius: 20px;
+    margin-bottom: 20px;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.02);
+}
+
+.status-pulse {
+    width: 8px;
+    height: 8px;
+    background-color: #10b981;
+    border-radius: 50%;
+    box-shadow: 0 0 0 0 rgba(16, 185, 129, 0.4);
+    animation: pulse 2s infinite;
+}
+
+@keyframes pulse {
+    0% { transform: scale(0.95); box-shadow: 0 0 0 0 rgba(16, 185, 129, 0.4); }
+    70% { transform: scale(1); box-shadow: 0 0 0 6px rgba(16, 185, 129, 0); }
+    100% { transform: scale(0.95); box-shadow: 0 0 0 0 rgba(16, 185, 129, 0); }
+}
+
+.status-text {
+    font-size: 0.75rem;
+    font-weight: 600;
+    color: var(--text-muted);
+    letter-spacing: 0.02em;
+}
+
 .profile-header {
     display: flex;
     flex-direction: row;
     align-items: center;
     gap: 24px;
-    margin-bottom: 24px;
+    margin-bottom: 20px;
 }
 
 .avatar-block {
-    width: 64px;
-    height: 64px;
+    width: 68px;
+    height: 68px;
     background: linear-gradient(135deg, #e0e7ff 0%, #e0f2fe 100%);
     color: var(--accent-primary);
-    font-size: 1.25rem;
-    font-weight: 700;
+    font-size: 1.3rem;
+    font-weight: 800;
     display: flex;
     align-items: center;
     justify-content: center;
-    border-radius: 16px;
+    border-radius: 20px;
     letter-spacing: 0.05em;
     flex-shrink: 0;
-    border: 1px solid rgba(37, 99, 235, 0.1);
-    box-shadow: 0 8px 20px rgba(37, 99, 235, 0.05);
+    border: 1px solid rgba(37, 99, 235, 0.15);
+    box-shadow: 0 10px 25px rgba(37, 99, 235, 0.08);
 }
 
 .header-intro {
@@ -127,27 +162,60 @@ body {
 }
 
 h1 {
-    font-size: 2rem;
-    font-weight: 700;
-    letter-spacing: -0.03em;
+    font-size: 2.1rem;
+    font-weight: 800;
+    letter-spacing: -0.035em;
     line-height: 1.2;
     color: var(--text-primary);
 }
 
 .tagline {
-    font-size: 0.95rem;
+    font-size: 0.98rem;
     color: var(--accent-primary);
     font-weight: 600;
     margin-top: 4px;
 }
+
+/* Hero Chips Grid */
+.hero-chips-grid {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px;
+    margin-bottom: 24px;
+}
+
+.hero-chip {
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    font-size: 0.78rem;
+    font-weight: 600;
+    color: var(--text-primary);
+    background: var(--card-surface);
+    border: 1px solid var(--border-soft);
+    padding: 6px 12px;
+    border-radius: 12px;
+    box-shadow: 0 2px 6px rgba(0,0,0,0.01);
+}
+
+.chip-dot {
+    width: 6px;
+    height: 6px;
+    border-radius: 50%;
+}
+
+.chip-dot.blue { background: var(--accent-primary); }
+.chip-dot.purple { background: var(--accent-secondary); }
+.chip-dot.amber { background: #f59e0b; }
+.chip-dot.pink { background: var(--accent-project); }
 
 .bio-text {
     font-size: 1.02rem;
     line-height: 1.7;
     color: var(--text-muted);
     background: linear-gradient(to right, #f1f5f9, #f8fafc);
-    padding: 20px;
-    border-radius: 14px;
+    padding: 22px;
+    border-radius: 16px;
     border: 1px solid var(--border-soft);
 }
 
@@ -201,7 +269,7 @@ h1 {
     gap: 4px;
 }
 
-/* Cards Grid */
+/* Cards Grid & Premium Cards */
 .cards-grid {
     display: flex;
     flex-direction: column;
@@ -316,6 +384,7 @@ h1 {
     background: var(--accent-project) !important;
 }
 
+/* Expandable Project Container */
 .expandable-project-container {
     background: var(--card-surface);
     border: 1px solid var(--border-soft);
@@ -452,6 +521,7 @@ h1 {
     font-weight: bold;
 }
 
+/* Image Carousel */
 .carousel-wrapper {
     position: relative;
     width: 100%;
@@ -550,6 +620,7 @@ h1 {
     border-radius: 4px;
 }
 
+/* 3D Credential Flip Card */
 .flip-card {
     background: transparent !important;
     border: none !important;
