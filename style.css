@@ -6,11 +6,12 @@
     --border-soft: rgba(17, 21, 24, 0.06);
     --card-surface: #ffffff;
     
-    /* Screenshot Exact Colors */
+    /* Screenshot Colors & Refined About Card Palette */
     --accent-gold: #b5852a;
-    --dark-green-bg: #0c1c14;
-    --dark-green-border: #182e22;
-    --dark-green-text: #b8c7be;
+    --about-card-bg: #f0f4f1;          /* Soft, complementary sage-cream */
+    --about-card-border: #d6e2d9;      /* Subtle border accent */
+    --about-card-title: #14281d;       /* Deep forest slate for title */
+    --about-card-text: #2d3b33;        /* High-contrast readable body text */
     --timeline-line-color: #bcd4c6;
     
     --accent-primary: #2563eb;   
@@ -103,7 +104,7 @@ body {
     padding: 24px 0;
 }
 
-/* --- Screenshot 1: About Section Dark Theme --- */
+/* --- About Section Hero & Refined Complementary Container --- */
 .hero-name {
     font-size: 2.2rem;
     font-weight: 800;
@@ -120,15 +121,15 @@ body {
 }
 
 .bio-card {
-    background-color: var(--dark-green-bg);
-    border: 1px solid var(--dark-green-border);
+    background-color: var(--about-card-bg);
+    border: 1px solid var(--about-card-border);
     border-radius: 20px;
     padding: 32px;
-    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.05);
+    box-shadow: 0 4px 20px rgba(20, 40, 29, 0.03);
 }
 
 .bio-card .bio-heading {
-    color: #ffffff;
+    color: var(--about-card-title);
     font-size: 1.35rem;
     font-weight: 700;
     margin-bottom: 20px;
@@ -136,7 +137,7 @@ body {
 }
 
 .bio-card p {
-    color: var(--dark-green-text);
+    color: var(--about-card-text);
     font-size: 0.98rem;
     line-height: 1.68;
     margin-bottom: 18px;
@@ -146,7 +147,7 @@ body {
     margin-bottom: 0;
 }
 
-/* --- Screenshot 2: Minimal Line Timeline --- */
+/* --- Minimal Line Timeline --- */
 .section-title {
     font-size: 0.78rem;
     text-transform: uppercase;
