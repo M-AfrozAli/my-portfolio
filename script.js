@@ -10,7 +10,7 @@ document.addEventListener('DOMContentLoaded', () => {
     const nextBtn = document.getElementById('nextSlide');
     let currentSlideIndex = 0;
 
-    // ScrollSpy
+    // Navigation ScrollSpy
     window.addEventListener('scroll', () => {
         let currentSectionId = '';
         sections.forEach(section => {
@@ -27,7 +27,7 @@ document.addEventListener('DOMContentLoaded', () => {
         });
     }, { passive: true });
 
-    // IBM Card Flip
+    // Flip Card
     if (ibmCard) {
         ibmCard.addEventListener('click', (e) => {
             if (e.target.tagName.toLowerCase() === 'iframe') return;
@@ -35,7 +35,7 @@ document.addEventListener('DOMContentLoaded', () => {
         });
     }
 
-    // Lanc Expand
+    // Expand Project Card
     if (lancProjectCard) {
         lancProjectCard.addEventListener('click', () => {
             if (!lancProjectCard.classList.contains('is-expanded')) {
@@ -44,7 +44,7 @@ document.addEventListener('DOMContentLoaded', () => {
         });
     }
 
-    // Lanc Collapse
+    // Collapse Project Card
     if (closeLancBtn) {
         closeLancBtn.addEventListener('click', (e) => {
             e.stopPropagation(); 
@@ -52,7 +52,7 @@ document.addEventListener('DOMContentLoaded', () => {
         });
     }
 
-    // Carousel
+    // Carousel Controls
     function updateCarouselState() {
         slides.forEach(slide => slide.classList.remove('active'));
         dots.forEach(dot => dot.classList.remove('active-dot'));
